@@ -1,0 +1,110 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Elvis",
+      "image": "https://i.ibb.co/njJJL0r/user-1.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Khaleesi",
+      "image": "https://i.ibb.co/TK4Gy2m/user-2.jpg"
+    },
+    {
+      "id": 3,
+      "name": "Nimbus",
+      "image": "https://i.ibb.co/WPy1MW2/user-3.jpg"
+    },
+    {
+      "id": 4,
+      "name": "Muffin",
+      "image": "https://i.ibb.co/VQn9XKk/user-4.jpg"
+    }
+  ],
+  "events": [
+    {
+      "id": 1,
+      "createdBy": 1,
+      "title": "Annoy the grumpy neighbour",
+      "description": "Let's run around in my grumpy neighbour's yard and pester his dog.",
+      "image": "https://i.ibb.co/L1HszTP/event-1.jpg",
+      "categoryIds": [1, 4],
+      "location": "My next-door neighbour's garden",
+      "startTime": "2024-09-01T14:00",
+      "endTime": "2024-09-01T14:15:00.000Z"
+    },
+    {
+      "id": 2,
+      "createdBy": 2,
+      "title": "Cat Yoga",
+      "description": "Time to stretch your paws!",
+      "image": "https://i.ibb.co/9Wh4Qgd/event-2.jpg",
+      "categoryIds": [1],
+      "location": "My garden",
+      "startTime": "2024-09-02T08:00",
+      "endTime": "2024-09-02T08:20"
+    },
+    {
+      "id": 3,
+      "createdBy": 4,
+      "title": "Treat tasting",
+      "description": "Come grab a snack from my humans snack cabinet. We just received new flavours!",
+      "image": "https://i.ibb.co/zfG75yy/event-3.jpg",
+      "categoryIds": [2],
+      "location": "The kitchen",
+      "startTime": "2024-09-06T12:00:00.000Z",
+      "endTime": "2024-09-06T12:30:00.000Z"
+    },
+    {
+      "id": 4,
+      "createdBy": 3,
+      "title": "Sunbathing",
+      "description": "Let's warm up and relax in the sun.",
+      "image": "https://i.ibb.co/4d7L9zz/event-4.jpg",
+      "categoryIds": [3],
+      "location": "The bench on the square",
+      "startTime": "2024-09-10T15:00:00.000Z",
+      "endTime": "2024-09-10T16:00:00.000Z"
+    },
+    {
+      "id": 5,
+      "createdBy": 1,
+      "title": "Wrestling",
+      "description": "Wrestle-maniaaaaaaaaauw!",
+      "image": "https://i.ibb.co/dgRCMkw/event-5.jpg",
+      "categoryIds": [1],
+      "location": "The alley",
+      "startTime": "2024-09-11T20:00:00.000Z",
+      "endTime": "2024-09-11T21:00:00.000Z"
+    },
+    {
+      "id": 6,
+      "createdBy": 2,
+      "title": "Cat Concert",
+      "description": "Let's sing the song of our people!",
+      "image": "https://i.ibb.co/LtQb3mN/event-6.jpg",
+      "categoryIds": [4],
+      "location": "The balcony",
+      "startTime": "2024-09-14T23:30:00.000Z",
+      "endTime": "2024-09-14T23:59:00.000Z"
+    }
+  ],
+  "categories": [
+    {
+      "name": "exercise",
+      "id": 1
+    },
+    {
+      "name": "cuisine",
+      "id": 2
+    },
+    {
+      "name": "relaxation",
+      "id": 3
+    },
+    {
+      "name": "entertainment",
+      "id": 4
+    }
+  ]
+}
