@@ -5,16 +5,16 @@ export const SearchBar = ({ changeFn, ...props }) => {
   return (
     <Flex
       className="search-events"
-      padding="1rem"
+      padding="0.2rem"
       flexDirection="row"
       flexWrap="nowrap"
       alignItems="center"
       justifyContent="flex-start"
     >
       <Icon
-        colorScheme="green"
-        height={{ base: "1.4rem", md: "1.7rem" }}
-        width={{ base: "1.4rem", md: "1.7rem" }}
+        color="green.400"
+        height={{ base: "1.2rem", md: "1.4rem" }}
+        width={{ base: "1.2rem", md: "1.4rem" }}
         marginRight="1rem"
         as={Search2Icon}
       />
@@ -26,13 +26,14 @@ export const SearchBar = ({ changeFn, ...props }) => {
         placeholder="Search events"
         color="green.400"
         _placeholder={{ opacity: 1, color: "green.600" }}
+        _hover={{ borderColor: "green.300" }}
         fontSize={{ base: "1rem", sm: "1.2rem" }}
         padding={{ base: "1rem", sm: "1.4rem" }}
         focusBorderColor="green.200"
         borderColor="green.400"
-        borderRadius="10px"
-        width={{ base: "12rem", md: "20rem" }}
-        heigth={{ base: 12, md: 16 }}
+        borderRadius="8px"
+        width={{ base: "10rem", md: "14rem" }}
+        size={{ base: "md", md: "lg" }}
         onChange={changeFn}
         {...props}
       ></Input>
