@@ -19,7 +19,7 @@ import {
 
 export const Navigation = () => {
   return (
-    <Menu width="100%">
+    <Menu width="100vw" height="fit-content">
       <MenuButton
         as={IconButton}
         aria-label="Navigation"
@@ -27,6 +27,7 @@ export const Navigation = () => {
         variant="outline"
         color="green.200"
         colorScheme="green.200"
+        align-content="start"
       />
       <MenuList
         listStyleType="none"
