@@ -5,6 +5,7 @@ import { EventPage } from "./pages/EventPage";
 import { EventsPage, loader as eventsLoader } from "./pages/EventsPage";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Root } from "./components/Root";
+import { DataContextProvider } from "./context/DataContext";
 
 const router = createBrowserRouter([
   {
@@ -29,7 +30,9 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <ChakraProvider>
-      <RouterProvider router={router} />
+      <DataContextProvider>
+        <RouterProvider router={router} />
+      </DataContextProvider>
     </ChakraProvider>
   </React.StrictMode>
 );
