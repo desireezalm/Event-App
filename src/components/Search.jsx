@@ -1,7 +1,7 @@
 import { Input, Icon, Flex } from "@chakra-ui/react";
 import { Search2Icon } from "@chakra-ui/icons";
 
-export const SearchBar = ({ changeFn, ...props }) => {
+export const SearchBar = () => {
   return (
     <Flex
       className="search-events"
@@ -18,25 +18,6 @@ export const SearchBar = ({ changeFn, ...props }) => {
         marginRight="1rem"
         as={Search2Icon}
       />
-      <Input
-        type="text"
-        variant="outline"
-        name="search-field"
-        colorScheme="green"
-        placeholder="Search events"
-        color="green.400"
-        _placeholder={{ opacity: 1, color: "green.600" }}
-        _hover={{ borderColor: "green.300" }}
-        fontSize={{ base: "1rem", sm: "1.2rem" }}
-        padding={{ base: "1rem", sm: "1.4rem" }}
-        focusBorderColor="green.200"
-        borderColor="green.400"
-        borderRadius="8px"
-        width={{ base: "10rem", md: "14rem" }}
-        size={{ base: "md", md: "lg" }}
-        onChange={changeFn}
-        {...props}
-      ></Input>
     </Flex>
   );
 };
@@ -44,8 +25,6 @@ export const SearchBar = ({ changeFn, ...props }) => {
 /*
 import { useState } from "react";
 import { data } from "../utils/data";
-import { Center, Text, Box } from "@chakra-ui/react";
-import { Search2Icon } from "@chakra-ui/icons";
 import { ShowRecipes } from "../components/ShowRecipes";
 import { TextInput } from "../components/ui/TextInput";
 
