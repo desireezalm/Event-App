@@ -1,23 +1,11 @@
-import React from "react";
-import {
-  Box,
-  Heading,
-  SimpleGrid,
-  Text,
-  Image,
-  Tag,
-  Flex,
-  Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
-  IconButton,
-  Stack,
-} from "@chakra-ui/react";
-import { useLoaderData, Link } from "react-router-dom";
-import { EditIcon, DeleteIcon } from "@chakra-ui/icons";
-import { SearchBar } from "../components/Search";
+import React, { useEffect } from "react";
+import { useState } from "react";
+import { Box, Heading, SimpleGrid, Flex, Icon } from "@chakra-ui/react";
+import { useLoaderData } from "react-router-dom";
+import { Search2Icon } from "@chakra-ui/icons";
 import { FilterEvents } from "../components/Filter";
+import { InputField } from "../components/util/InputField";
+import { EventCard } from "../components/util/EventCard";
 
 export const loader = async () => {
   const users = await fetch("http://localhost:3000/users");
@@ -31,21 +19,44 @@ export const loader = async () => {
   };
 };
 
-export const EventsPage = () => {
-  const { events, users, categories } = useLoaderData();
-  //console.log("Events: ", events);
-  //console.log("Users: ", users);
-  //console.log("Categories: ", categories);
+export const EventsPage = ({ clickFn }) => {
+  // LOADER DATA
+  const { events } = useLoaderData();
+  const { categories } = useLoaderData();
+  const { users } = useLoaderData();
 
-  const compareCategory = (categoryId, categoryArray) => {
-    const id = categoryId;
-    const comparison = categoryArray.find((categoryItem) => {
-      if (categoryItem.id === id) {
-        return categoryItem.id === id;
-      }
-    });
-    const result = comparison.name[0].toUpperCase() + comparison.name.slice(1);
-    return result;
+  // STATIC DATA FETCH
+  const [userList, setUserList] = useState([]);
+  const [categoryList, setCategoryList] = useState([]);
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      const response = await fetch("http://localhost:3000/users");
+      const data = await response.json();
+      setUserList(data);
+    };
+    fetchUsers();
+  }, []);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      const response = await fetch("http://localhost:3000/categories");
+      const data = await response.json();
+      setCategoryList(data);
+    };
+    fetchCategories();
+  }, []);
+
+  // SEARCH BAR
+  const [searchField, setSearchField] = useState("");
+  const eventMatches = events.filter((item) => {
+    const eventNames = item.title.toLowerCase();
+    const results = eventNames.includes(searchField.toLowerCase());
+    return results;
+  });
+
+  const changeFn = (event) => {
+    setSearchField(event.target.value);
   };
 
   return (
@@ -59,99 +70,39 @@ export const EventsPage = () => {
         Cat Crew Events
       </Heading>
 
-      <Flex className="options-bar">
+      <Flex
+        className="options-bar"
+        flexDirection={{ base: "column", md: "row" }}
+        padding="0 1rem 1rem 1rem"
+        gap={{ base: 2, md: 4 }}
+      >
+        <Flex
+          className="search-events"
+          padding="0.2rem"
+          flexDirection="row"
+          flexWrap="nowrap"
+          alignItems="center"
+          justifyContent="flex-start"
+        >
+          <Icon
+            color="green.400"
+            height={{ base: "1.2rem", md: "1.4rem" }}
+            width={{ base: "1.2rem", md: "1.4rem" }}
+            marginRight="1rem"
+            as={Search2Icon}
+          />
+          <InputField onChange={changeFn} />
+        </Flex>
         <FilterEvents />
-        <SearchBar />
       </Flex>
 
       <SimpleGrid
         className="event-list"
-        columns={{ base: 1, md: 2, lg: 3 }}
+        columns={{ base: 1, md: 2, lg: 3, xl: 4 }}
         gridGap="2rem"
       >
-        {events.map((event) => (
-          <Card
-            key={event.id}
-            className="event"
-            bgColor="green.200"
-            w={{ base: "90vw", sm: "22rem" }}
-            h={{ base: "fit-content", sm: "46rem" }}
-            margin="1rem"
-          >
-            <Stack>
-              <Link to={`event/${event.id}`}>
-                <Image
-                  objectFit="cover"
-                  objectPosition="50% 50%"
-                  src={event.image}
-                  borderTopRadius="md"
-                />
-                <CardHeader>
-                  <Heading as="h2" size="sm">
-                    {event.title}
-                  </Heading>
-                </CardHeader>
-                <CardBody minHeight="14rem">
-                  <Text fontSize="sm">{event.description}</Text>
-                  <Box marginTop="1.5rem" textAlign="start">
-                    <Text fontSize="xs">
-                      <b>Start: </b>
-                      {new Date(event.startTime).toLocaleString().slice(0, -3)}
-                    </Text>
-                    <Text fontSize="xs">
-                      <b>End: </b>
-                      {new Date(event.endTime).toLocaleString().slice(0, -3)}
-                    </Text>
-                  </Box>
-                  <Flex
-                    gap={2}
-                    wrap="wrap"
-                    alignSelf="center"
-                    justifyContent="start"
-                    paddingBottom="1rem"
-                    marginTop="2rem"
-                    fontSize="xs"
-                    fontWeight="bold"
-                  >
-                    Category:
-                    {event.categoryIds.map((categoryId) => (
-                      <Tag
-                        bgColor="green.100"
-                        color="green.700"
-                        fontSize="xs"
-                        key={categoryId}
-                        width="fit-content"
-                      >
-                        {compareCategory(categoryId, categories)}
-                      </Tag>
-                    ))}
-                  </Flex>
-                </CardBody>
-                <CardFooter gap="1rem" alignSelf="flex-end">
-                  <IconButton
-                    aria-label="Edit Event"
-                    colorScheme="green"
-                    color="white"
-                    _hover={{ color: "yellow.400", bgColor: "green.700" }}
-                    size="lg"
-                    variant="solid"
-                    fontSize="lg"
-                    icon={<EditIcon />}
-                  />
-                  <IconButton
-                    aria-label="Delete Event"
-                    colorScheme="green"
-                    color="white"
-                    _hover={{ color: "red.400", bgColor: "green.700" }}
-                    size="lg"
-                    variant="solid"
-                    fontSize="lg"
-                    icon={<DeleteIcon />}
-                  />
-                </CardFooter>
-              </Link>
-            </Stack>
-          </Card>
+        {eventMatches.map((event) => (
+          <EventCard key={event.id} item={event} categories={categories} />
         ))}
       </SimpleGrid>
     </Box>
