@@ -9,7 +9,7 @@ export const Root = () => {
       id="root"
       bgColor="blackAlpha.800"
       width="100vw"
-      height="fit-content"
+      height="full"
       color="green.200"
       textAlign="center"
       fontFamily="heading"
