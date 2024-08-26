@@ -1,11 +1,14 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { Box, Heading, SimpleGrid, Flex, Icon } from "@chakra-ui/react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, Link } from "react-router-dom";
 import { Search2Icon } from "@chakra-ui/icons";
 import { FilterEvents } from "../components/Filter";
 import { InputField } from "../components/util/InputField";
 import { EventCard } from "../components/util/EventCard";
+
+import { Message } from "../components/Messages";
+import { SearchBar } from "../components/Search";
 
 export const loader = async () => {
   const users = await fetch("http://localhost:3000/users");
@@ -19,7 +22,7 @@ export const loader = async () => {
   };
 };
 
-export const EventsPage = ({ clickFn }) => {
+export const EventsPage = () => {
   // LOADER DATA
   const { events } = useLoaderData();
   const { categories } = useLoaderData();
@@ -47,15 +50,33 @@ export const EventsPage = ({ clickFn }) => {
     fetchCategories();
   }, []);
 
-  // SEARCH BAR
+  // SEARCH & FILTER FUNCTION
   const [searchField, setSearchField] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("");
+
   const eventMatches = events.filter((item) => {
+    // EVENT DATA
     const eventNames = item.title.toLowerCase();
-    const results = eventNames.includes(searchField.toLowerCase());
-    return results;
+    const eventCategories = item.categoryIds.toString();
+
+    // QUERY DATA
+    const searchQuery = searchField.toLowerCase();
+    const filterQuery = selectedCategory;
+
+    // RESULTS
+    const searchResult = eventNames.includes(searchQuery);
+    const filterResult = eventCategories.includes(filterQuery);
+
+    if (searchResult && filterResult) {
+      return item;
+    }
   });
 
-  const changeFn = (event) => {
+  const handleFilter = (event) => {
+    setSelectedCategory(event.target.value);
+  };
+
+  const handleSearch = (event) => {
     setSearchField(event.target.value);
   };
 
@@ -76,7 +97,38 @@ export const EventsPage = ({ clickFn }) => {
         padding="0 1rem 1rem 1rem"
         gap={{ base: 2, md: 4 }}
       >
-        <Flex
+        <SearchBar onChange={handleSearch} />
+        <FilterEvents onChange={handleFilter} />
+      </Flex>
+
+      <SimpleGrid
+        width="100vw"
+        className="event-list"
+        columns={{ base: 1, md: 2, lg: 3, xl: 4 }}
+        spacing={10}
+        padding={{ base: "sm", sm: "sm", md: "md" }}
+        margin={{ base: "sm", sm: "sm", md: "md" }}
+      >
+        {eventMatches.length < 1 ? (
+          <Message text={"No events were found"} />
+        ) : (
+          eventMatches.map((event) => (
+            <Link
+              to={`event/${event.id}`}
+              key={event.id}
+              _hover={{ textDecorationStyle: "none" }}
+            >
+              <EventCard key={event.id} item={event} categories={categories} />
+            </Link>
+          ))
+        )}
+      </SimpleGrid>
+    </Box>
+  );
+};
+
+/*
+<Flex
           className="search-events"
           padding="0.2rem"
           flexDirection="row"
@@ -91,20 +143,6 @@ export const EventsPage = ({ clickFn }) => {
             marginRight="1rem"
             as={Search2Icon}
           />
-          <InputField onChange={changeFn} />
+          <InputField onChange={handleSearch} />
         </Flex>
-        <FilterEvents />
-      </Flex>
-
-      <SimpleGrid
-        className="event-list"
-        columns={{ base: 1, md: 2, lg: 3, xl: 4 }}
-        gridGap="2rem"
-      >
-        {eventMatches.map((event) => (
-          <EventCard key={event.id} item={event} categories={categories} />
-        ))}
-      </SimpleGrid>
-    </Box>
-  );
-};
+        */
