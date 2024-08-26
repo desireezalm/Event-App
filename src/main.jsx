@@ -1,11 +1,11 @@
 import { ChakraProvider } from "@chakra-ui/react";
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { EventPage } from "./pages/EventPage";
+import { EventPage, loader as eventLoader } from "./pages/EventPage";
 import { EventsPage, loader as eventsLoader } from "./pages/EventsPage";
+import { AddEvent } from "./pages/AddEvent";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Root } from "./components/Root";
-import { DataContextProvider } from "./context/DataContext";
 
 const router = createBrowserRouter([
   {
@@ -20,7 +20,13 @@ const router = createBrowserRouter([
       {
         path: "/event/:eventId",
         element: <EventPage />,
-        // loader: postLoader,
+        loader: eventLoader,
+        // action: addComment,
+      },
+      {
+        path: "/newEvent",
+        element: <AddEvent />,
+        // loader:
         // action: addComment,
       },
     ],
@@ -30,9 +36,7 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <ChakraProvider>
-      <DataContextProvider>
-        <RouterProvider router={router} />
-      </DataContextProvider>
+      <RouterProvider router={router} />
     </ChakraProvider>
   </React.StrictMode>
 );
