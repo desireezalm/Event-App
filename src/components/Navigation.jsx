@@ -19,24 +19,30 @@ import {
 
 export const Navigation = () => {
   return (
-    <Menu width="100vw" height="fit-content">
+    <Menu width={{ base: "100vw", md: "30vw" }} height="fit-content">
       <MenuButton
         as={IconButton}
         aria-label="Navigation"
         icon={<HamburgerIcon />}
         variant="outline"
         color="green.200"
+        width={{ base: "2rem", md: "4rem" }}
+        height={{ base: "2.2rem", md: "4rem" }}
+        fontSize={{ base: "1.2rem", md: "1.7rem" }}
         colorScheme="green.200"
         align-content="start"
+        padding="1.5rem"
+        margin={{ base: "0.5rem", md: "1rem" }}
       />
       <MenuList
         listStyleType="none"
         textAlign="start"
-        width="100%"
+        width={{ base: "100%", md: "25%" }}
         marginLeft={0}
         spacing={1}
         textTransform="uppercase"
         bgColor="green.200"
+        boxShadow={{ base: 0, md: "0 4px 15px rgb(0 0 0 / 0.3)" }}
       >
         <Flex
           justifyContent="space-between"
@@ -44,56 +50,66 @@ export const Navigation = () => {
           wrap="nowrap"
           flexDirection="column"
         >
-          <MenuItem
-            width="100vw"
-            padding="0.5rem"
-            icon={
-              <CalendarIcon
-                paddingRight="0.3rem"
-                paddingBottom="0.1rem"
-                fontSize="xl"
-              />
-            }
-            color="green.700"
-            bgColor="green.200"
-            _hover={{ bgColor: "green.700", color: "green.200" }}
-          >
-            <Link to="/">Events</Link>
-          </MenuItem>
+          <Link to="/">
+            <MenuItem
+              width={{ base: "100vw", md: "100%" }}
+              padding="0.5rem"
+              borderRadius={{ md: "0.5rem" }}
+              icon={
+                <CalendarIcon
+                  paddingRight="0.3rem"
+                  paddingBottom="0.1rem"
+                  fontSize="xl"
+                />
+              }
+              color="green.700"
+              bgColor="green.200"
+              _hover={{ bgColor: "green.700", color: "green.200" }}
+            >
+              Events
+            </MenuItem>
+          </Link>
+
           <MenuDivider />
-          <MenuItem
-            width="100vw"
-            padding="0.5rem"
-            icon={
-              <AddIcon
-                paddingRight="0.3rem"
-                paddingBottom="0.1rem"
-                fontSize="xl"
-              />
-            }
-            color="green.700"
-            bgColor="green.200"
-            _hover={{ bgColor: "green.700", color: "green.200" }}
-          >
-            <Link to="/">Add new event</Link>
-          </MenuItem>
+          <Link to="/new">
+            <MenuItem
+              width={{ base: "100vw", md: "100%" }}
+              padding="0.5rem"
+              borderRadius={{ md: "0.5rem" }}
+              icon={
+                <AddIcon
+                  paddingRight="0.3rem"
+                  paddingBottom="0.1rem"
+                  fontSize="xl"
+                />
+              }
+              color="green.700"
+              bgColor="green.200"
+              _hover={{ bgColor: "green.700", color: "green.200" }}
+            >
+              Add new event
+            </MenuItem>
+          </Link>
           <MenuDivider />
-          <MenuItem
-            width="100vw"
-            padding="0.5rem"
-            icon={
-              <ChatIcon
-                paddingRight="0.3rem"
-                paddingBottom="0.1rem"
-                fontSize="xl"
-              />
-            }
-            color="green.700"
-            bgColor="green.200"
-            _hover={{ bgColor: "green.700", color: "green.200" }}
-          >
-            <Link to="/">Group members</Link>
-          </MenuItem>
+          <Link to="/">
+            <MenuItem
+              width={{ base: "100vw", md: "100%" }}
+              padding="0.5rem"
+              borderRadius={{ md: "0.5rem" }}
+              icon={
+                <ChatIcon
+                  paddingRight="0.3rem"
+                  paddingBottom="0.1rem"
+                  fontSize="xl"
+                />
+              }
+              color="green.700"
+              bgColor="green.200"
+              _hover={{ bgColor: "green.700", color: "green.200" }}
+            >
+              Group members
+            </MenuItem>
+          </Link>
         </Flex>
       </MenuList>
     </Menu>

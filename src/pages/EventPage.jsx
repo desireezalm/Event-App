@@ -1,5 +1,5 @@
 import React from "react";
-import { Center } from "@chakra-ui/react";
+import { Center, Heading } from "@chakra-ui/react";
 import { useLoaderData } from "react-router-dom";
 import { EventCardDetails } from "../components/util/EventCard";
 
@@ -20,13 +20,23 @@ export const loader = async ({ params }) => {
 export const EventPage = () => {
   const { eventItem, users, categories } = useLoaderData();
   return (
-    <Center className="event-page">
-      <EventCardDetails
-        categories={categories}
-        users={users}
-        key={eventItem.id}
-        item={eventItem}
-      />
-    </Center>
+    <>
+      <Heading
+        textTransform="uppercase"
+        margin="1.5rem 0"
+        fontFamily="fantasy"
+        letterSpacing="widest"
+      >
+        Cat Crew
+      </Heading>
+      <Center className="event-page">
+        <EventCardDetails
+          categories={categories}
+          users={users}
+          key={eventItem.id}
+          item={eventItem}
+        />
+      </Center>
+    </>
   );
 };

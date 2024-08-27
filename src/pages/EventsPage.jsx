@@ -1,10 +1,8 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { Box, Heading, SimpleGrid, Flex, Icon } from "@chakra-ui/react";
+import { Box, Heading, SimpleGrid, Flex } from "@chakra-ui/react";
 import { useLoaderData, Link } from "react-router-dom";
-import { Search2Icon } from "@chakra-ui/icons";
 import { FilterEvents } from "../components/Filter";
-import { InputField } from "../components/util/InputField";
 import { EventCard } from "../components/util/EventCard";
 
 import { Message } from "../components/Messages";
@@ -126,23 +124,3 @@ export const EventsPage = () => {
     </Box>
   );
 };
-
-/*
-<Flex
-          className="search-events"
-          padding="0.2rem"
-          flexDirection="row"
-          flexWrap="nowrap"
-          alignItems="center"
-          justifyContent="flex-start"
-        >
-          <Icon
-            color="green.400"
-            height={{ base: "1.2rem", md: "1.4rem" }}
-            width={{ base: "1.2rem", md: "1.4rem" }}
-            marginRight="1rem"
-            as={Search2Icon}
-          />
-          <InputField onChange={handleSearch} />
-        </Flex>
-        */

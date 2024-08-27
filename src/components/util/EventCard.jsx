@@ -14,45 +14,35 @@ import {
   Center,
   Grid,
   GridItem,
+  Spacer,
 } from "@chakra-ui/react";
+
+import { useData } from "../../context/DataContext";
 
 import { EditIcon, DeleteIcon } from "@chakra-ui/icons";
 import { TextLabel } from "./TextLabel";
 
-// CATEGORY NAME COMPARISON FUNCTION
-
-const matchId = (id, list, type) => {
-  const result = list.find((item) => {
-    if (item.id === id) {
-      return item;
-    }
-  });
-  switch (type) {
-    case "string":
-      return result.name[0].toUpperCase() + result.name.slice(1);
-    case "image":
-      return result.image;
-    default:
-      break;
-  }
-  return result;
-};
-
 // EVENTS PAGE OVERVIEW
 
 export const EventCard = ({ item, categories }) => {
+  const { matchId } = useData();
   return (
     <Card
       key={item.id}
       className="event"
       bgColor="green.200"
-      w={{ base: "90vw", sm: "22rem" }}
-      h={{ base: "fit-content", sm: "fit-content" }}
-      margin="1rem"
+      w={{ base: "90vw", md: "22rem" }}
+      h={{ base: "fit-content", md: "45rem" }}
+      minHeight="fit-content"
+      margin="0 auto"
       categories={categories}
     >
       {" "}
-      <Stack>
+      <Flex
+        flexDirection={{ base: "column" }}
+        height="100%"
+        alignItems="space-between"
+      >
         <Image
           objectFit="cover"
           objectPosition="50% 50%"
@@ -79,6 +69,7 @@ export const EventCard = ({ item, categories }) => {
             </Text>
           </Box>
         </CardBody>
+        <Spacer />
         <CardFooter>
           <Flex
             gap={2}
@@ -103,13 +94,14 @@ export const EventCard = ({ item, categories }) => {
             ))}
           </Flex>
         </CardFooter>
-      </Stack>
+      </Flex>
     </Card>
   );
 };
 
 // DETAILED EVENT PAGE
 export const EventCardDetails = ({ item, categories, users }) => {
+  const { matchId } = useData();
   return (
     <Card
       key={item.id}
@@ -157,8 +149,8 @@ export const EventCardDetails = ({ item, categories, users }) => {
           </GridItem>
           <GridItem area="body">
             <CardBody minHeight="14rem">
-              <Stack direction="column" padding={{ base: "1rem" }}>
-                <Text fontSize={{ base: "md", md: "lg" }} textAlign="start">
+              <Stack direction="column" padding={{ base: "0.5rem" }}>
+                <Text fontSize={{ base: "sm", md: "md" }} textAlign="start">
                   {item.description}
                 </Text>
                 <Flex
