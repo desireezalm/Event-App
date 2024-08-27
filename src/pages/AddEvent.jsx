@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Heading,
@@ -9,11 +10,28 @@ import {
   SimpleGrid,
   Textarea,
   Button,
+  Select,
 } from "@chakra-ui/react";
-import { FormTextInput } from "../components/util/InputField";
+import { FormTextInput, FormTimeInput } from "../components/util/InputField";
 import { FormTextLabel } from "../components/util/TextLabel";
+import { useData } from "../context/DataContext";
+import { useLoaderData } from "react-router-dom";
+
+export const loader = async () => {
+  const users = await fetch("http://localhost:3000/users");
+  const categories = await fetch(`http://localhost:3000/categories`);
+
+  return {
+    users: await users.json(),
+    categories: await categories.json(),
+  };
+};
 
 export const AddEvent = () => {
+  const { categories, users } = useLoaderData();
+  const { matchId } = useData();
+  //const { categoryList, setCategoryList } = useState([]);
+
   return (
     <Box
       className="add-event"
@@ -35,31 +53,36 @@ export const AddEvent = () => {
       <SimpleGrid columns={{ base: 1, md: 2 }} textAlign="start">
         <form>
           <FormControl
-            className="event-title"
+            className="form-title"
             marginBottom={{ base: "0.5rem" }}
             isRequired
           >
-            <FormTextLabel text={"Event name: "} />
-            <FormTextInput placeholder={"Example: Catnip Party"} />
+            <FormTextLabel htmlFor="event-title" text={"Event name: "} />
+            <FormTextInput
+              id="event-title"
+              placeholder={"Example: Catnip Party"}
+            />
           </FormControl>
           <FormControl
-            className="event-image"
+            className="form-image"
             isRequired
             marginBottom={{ base: "0.5rem" }}
           >
-            <FormTextLabel text={"Image url: "} />
+            <FormTextLabel htmlFor="event-image" text={"Image url: "} />
             <FormTextInput
+              id="event-image"
               type="url"
               placeholder="https://www.example.com/image.jpg"
             ></FormTextInput>
           </FormControl>
           <FormControl
-            className="event-description"
+            className="form-description"
             marginBottom={{ base: "1rem" }}
             isRequired
           >
-            <FormTextLabel text={"Description: "} />
+            <FormTextLabel htmlFor="event-description" text={"Description: "} />
             <Textarea
+              id="event-description"
               placeholder="Example: Come try out our new catnip selection!"
               variant="outline"
               colorScheme="green"
@@ -75,33 +98,92 @@ export const AddEvent = () => {
             />
           </FormControl>
           <FormControl
-            className="event-location"
+            className="form-category"
             marginBottom={{ base: "0.5rem" }}
             isRequired
           >
-            <FormTextLabel text={"Location: "} />
-            <FormTextInput placeholder={"Example: Our basement"} />
+            <FormTextLabel htmlFor="event-category" text={"Category: "} />
+            <Select
+              placeholder="Select a category"
+              name="event-category"
+              id="event-category"
+              variant="outline"
+              colorScheme="green"
+              color="green.600"
+              display="inline-block"
+              _placeholder={{ opacity: 0.7, color: "green.600" }}
+              _hover={{ borderColor: "green.300" }}
+              fontSize={{ base: "1rem", sm: "1.2rem" }}
+              focusBorderColor="green.200"
+              borderColor="green.400"
+              borderRadius="1rem"
+              width={{ base: "60%", md: "14rem" }}
+              size={{ base: "sm", md: "md" }}
+            >
+              {categories.map((categoryItem) => (
+                <option key={categoryItem.id} value={categoryItem.id}>
+                  {categoryItem.name}
+                </option>
+              ))}
+            </Select>
           </FormControl>
           <FormControl
-            className="event-start"
+            className="form-location"
             marginBottom={{ base: "0.5rem" }}
             isRequired
           >
-            <FormTextLabel text={"Starting time: "} />
+            <FormTextLabel htmlFor="event-location" text={"Location: "} />
+            <FormTextInput
+              id="event-location"
+              placeholder={"Example: Our basement"}
+            />
           </FormControl>
           <FormControl
-            className="event-end"
+            className="form-start"
             marginBottom={{ base: "0.5rem" }}
             isRequired
           >
-            <FormTextLabel text={"Ending time: "} />
+            <FormTextLabel htmlFor="event-start" text={"Starting time: "} />
+            <FormTimeInput id="event-start" />
           </FormControl>
           <FormControl
-            className="event-createdby"
+            className="form-end"
             marginBottom={{ base: "0.5rem" }}
             isRequired
           >
-            <FormTextLabel text={"Created by: "} />
+            <FormTextLabel htmlFor="event-end" text={"Ending time: "} />
+            <FormTimeInput id="event-end" />
+          </FormControl>
+          <FormControl
+            className="form-createdby"
+            marginBottom={{ base: "0.5rem" }}
+            isRequired
+          >
+            <FormTextLabel htmlFor="event-createdby" text={"Created by: "} />
+            <Select
+              placeholder="Select a user"
+              name="event-createdby"
+              id="event-createdby"
+              variant="outline"
+              bgColor="blackAlpha.200"
+              colorScheme="green"
+              color="green.600"
+              display="inline-block"
+              _placeholder={{ opacity: 0.7, color: "green.600" }}
+              _hover={{ borderColor: "green.300" }}
+              fontSize={{ base: "1rem", sm: "1.2rem" }}
+              focusBorderColor="green.200"
+              borderColor="green.400"
+              borderRadius="1rem"
+              width={{ base: "60%", md: "14rem" }}
+              size={{ base: "sm", md: "md" }}
+            >
+              {users.map((userItem) => (
+                <option key={userItem.id} value={userItem.id}>
+                  {userItem.name}
+                </option>
+              ))}
+            </Select>
           </FormControl>
 
           <Button type="submit" colorScheme="green" margin={{ base: "2rem 0" }}>
