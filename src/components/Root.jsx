@@ -10,7 +10,7 @@ export const Root = () => {
       id="root"
       bgColor="blackAlpha.800"
       width="100vw"
-      height={{ base: "full", md: "full" }}
+      height="full"
       color="green.200"
       textAlign={{ base: "center", md: "start" }}
       fontFamily="heading"

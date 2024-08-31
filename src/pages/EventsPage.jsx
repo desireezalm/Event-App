@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { Box, Heading, SimpleGrid, Flex } from "@chakra-ui/react";
+import { Box, Heading, SimpleGrid, Flex, Text } from "@chakra-ui/react";
 import { useLoaderData, Link } from "react-router-dom";
 import { FilterEvents } from "../components/Filter";
 import { EventCard } from "../components/util/EventCard";
@@ -31,20 +31,20 @@ export const EventsPage = () => {
   const [categoryList, setCategoryList] = useState([]);
 
   useEffect(() => {
-    const fetchUsers = async () => {
+    async function fetchUsers() {
       const response = await fetch("http://localhost:3000/users");
       const data = await response.json();
       setUserList(data);
-    };
+    }
     fetchUsers();
   }, []);
 
   useEffect(() => {
-    const fetchCategories = async () => {
+    async function fetchCategories() {
       const response = await fetch("http://localhost:3000/categories");
       const data = await response.json();
       setCategoryList(data);
-    };
+    }
     fetchCategories();
   }, []);
 
