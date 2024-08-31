@@ -2,6 +2,7 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 import { Navigation } from "./Navigation";
 import { Box } from "@chakra-ui/react";
+import { DataContextProvider } from "../context/DataContext";
 
 export const Root = () => {
   return (
@@ -9,15 +10,17 @@ export const Root = () => {
       id="root"
       bgColor="blackAlpha.800"
       width="100vw"
-      height="fit-content"
+      height="full"
       color="green.200"
-      textAlign="center"
+      textAlign={{ base: "center", md: "start" }}
       fontFamily="heading"
       fontSize="xl"
       fontWeight="600"
     >
-      <Navigation />
-      <Outlet />
+      <DataContextProvider>
+        <Navigation />
+        <Outlet />
+      </DataContextProvider>
     </Box>
   );
 };
