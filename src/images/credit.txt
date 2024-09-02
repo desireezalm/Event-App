@@ -5,9 +5,23 @@ User 3: "https://unsplash.com/photos/a-siamese-cat-sitting-on-top-of-a-stone-sla
 User 4: "https://unsplash.com/photos/black-and-white-cat-on-brown-wooden-fence-during-daytime-1qN3bcLEvNk?utm_content=creditShareLink&utm_medium=referral&utm_source=unsplash",
 
 Events:
-Event 1:
+Event 1: "https://unsplash.com/photos/selective-focus-photography-of-brown-dog-W_b0n-gFQAE?utm_content=creditShareLink&utm_medium=referral&utm_source=unsplash"
 Event 2: "https://unsplash.com/photos/orange-cat-stretching-on-white-surface-ZlFKIG6dApg?utm_content=creditShareLink&utm_medium=referral&utm_source=unsplash",
 Event 3: "https://unsplash.com/photos/short-fur-gray-cat-smelling-sweets-vi3yGOPBZSY?utm_content=creditShareLink&utm_medium=referral&utm_source=unsplash",
 Event 4: "https://unsplash.com/photos/an-orange-and-white-cat-laying-on-top-of-a-cardboard-box-ChZxCFET7ZI?utm_content=creditShareLink&utm_medium=referral&utm_source=unsplash",
 Event 5: "https://unsplash.com/photos/a-white-cat-laying-on-its-back-on-the-floor-aMNLgArM_fk?utm_content=creditShareLink&utm_medium=referral&utm_source=unsplash",
-Event 6: "https://unsplash.com/photos/silver-tabby-kitten-on-floor-7AIDE8PrvA0?utm_content=creditShareLink&utm_medium=referral&utm_source=unsplash"
+Event 6: "https://unsplash.com/photos/silver-tabby-kitten-on-floor-7AIDE8PrvA0?utm_content=creditShareLink&utm_medium=referral&utm_source=unsplash",
+Event 7: "https://unsplash.com/photos/white-cat-on-brown-wooden-fence-during-daytime-BokzGWmcs-Y?utm_content=creditShareLink&utm_medium=referral&utm_source=unsplash",
+Event 8: "https://unsplash.com/photos/tabby-cat-playing-with-fish-on-fishbowl-IwYAo4G7Kr8?utm_content=creditShareLink&utm_medium=referral&utm_source=unsplash",
+
+
+Additional event texts:
+Event 7:
+Title: "Zoomie Staircase Extravaganza!",
+Description: "Attention, all feline fur-missiles! This Saturday at 3 PM, join us for the ultimate test of speed, agility, and chaotic energy—on the stairs! Whether you're a seasoned zoomie master or just discovered the thrill of full-speed sprints, this is the purr-fect opportunity to show off your stair-skipping skills. Bring your best zoomie face, sharpen those claws, and prepare to launch yourself into a frenzy of feline fun. Bonus points for dramatic pauses and tail poofs mid-zoom. See you on the stairs, fur-iends!",
+Image: "https://i.ibb.co/1sHf7Hg/event-7.jpg",
+
+Event 8:
+Title: "Catfish Catch-a-Thon!",
+Description: "Hey, whisker warriors! Ready to tap into your inner hunter? This Sunday at 2 PM, join us by the fishbowl (or bathtub, no judgment) for the ultimate feline fishing event! Whether you're a pro at paw-dipping or just enjoy the thrill of the splash, it's time to show off your fishing finesse. Expect plenty of slippery fish action, dramatic paw swipes, and, of course, the satisfaction of a well-earned catch. No opposable thumbs required—just pure cat instinct. Bring your best hunting stare and get ready to reel in the fun!",
+Image: "https://i.ibb.co/fxFVz44/event-8.jpg"
