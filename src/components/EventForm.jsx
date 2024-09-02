@@ -22,32 +22,11 @@ export const EventForm = ({ users, categories, events, createEvent }) => {
   const [eventLocation, setEventLocation] = useState("");
   const [eventStart, setEventStart] = useState("");
   const [eventEnd, setEventEnd] = useState("");
-  //const [eventId, setEventId] = useState(10);
-
-  /*
-  const handleCheckbox = (event) => {
-    console.log(event.target.value, event.target.checked);
-    if (!eventCategoryIds.includes(event.target.value)) {
-      setEventCategoryIds([...eventCategoryIds, Number(event.target.value)]);
-    } else if (eventCategoryIds.includes(event.target.value)) {
-      setEventCategoryIds(
-        eventCategoryIds.filter(
-          (categoryId) => categoryId !== Number(event.target.value)
-        )
-      );
-    }
-    console.log(event.target.value);
-    console.log(eventCategoryIds);
-  };
-    */
 
   const handleCheckbox = (event) => {
-    //console.log(event.target.value, event.target.checked);
     if (event.target.checked) {
-      //console.log("Add", event.target.value, event.target.checked);
       setEventCategoryIds([...eventCategoryIds, Number(event.target.value)]);
     } else if (!event.target.checked) {
-      //console.log("Remove", event.target.value, event.target.checked);
       setEventCategoryIds(
         eventCategoryIds.filter(
           (categoryId) => categoryId !== Number(event.target.value)
@@ -55,7 +34,6 @@ export const EventForm = ({ users, categories, events, createEvent }) => {
       );
     }
   };
-  //console.log(eventCategoryIds);
 
   const createId = () => {
     let newId = events.length + 1;
@@ -68,7 +46,6 @@ export const EventForm = ({ users, categories, events, createEvent }) => {
   };
 
   const handleSubmit = (event) => {
-    //event.preventDefault();
     console.log(event);
     const eventObject = {
       id: createId(),
@@ -82,7 +59,6 @@ export const EventForm = ({ users, categories, events, createEvent }) => {
       endTime: eventEnd,
     };
     createEvent(eventObject);
-    //console.log("Event object: ", eventObject);
   };
 
   return (
