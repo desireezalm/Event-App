@@ -1,21 +1,8 @@
-import React, { useState } from "react";
-import {
-  Box,
-  Heading,
-  FormControl,
-  Grid,
-  Textarea,
-  Button,
-  Select,
-  GridItem,
-  Flex,
-  Checkbox,
-  Text,
-  Stack,
-} from "@chakra-ui/react";
-import { FormTextInput, FormTimeInput } from "../components/util/InputField";
-import { FormTextLabel } from "../components/util/TextLabel";
+//import { useState } from "react";
+import { Box, Heading, Flex } from "@chakra-ui/react";
+
 import { useLoaderData, useNavigate } from "react-router-dom";
+import { EventForm } from "../components/EventForm";
 
 export const loader = async () => {
   const users = await fetch("http://localhost:3000/users");
@@ -31,64 +18,10 @@ export const loader = async () => {
 
 export const AddEvent = () => {
   const { categories, users, events } = useLoaderData();
-  const [inputData, setInputData] = useState();
   const navigate = useNavigate();
 
-  // STATE
-  const [author, setAuthor] = useState("");
-  const [eventTitle, setEventTitle] = useState("");
-  const [eventDescription, setEventDescription] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
-  const [eventCategoryIds, setEventCategoryIds] = useState([]);
-  const [eventLocation, setEventLocation] = useState("");
-  const [eventStart, setEventStart] = useState("");
-  const [eventEnd, setEventEnd] = useState("");
-  const [eventObject, setEventObject] = useState({});
-
-  // FORM DATA
-
-  const handleCheckbox = (event) => {
-    if (!eventCategoryIds.includes(event.target.value)) {
-      setEventCategoryIds([...eventCategoryIds, event.target.value]);
-    } else if (eventCategoryIds.includes(event.target.value)) {
-      setEventCategoryIds(
-        eventCategoryIds.filter(
-          (categoryId) => categoryId !== event.target.value
-        )
-      );
-    }
-  };
-
-  // SUBMIT HANDLER
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    let newId = events.length + 1;
-    events.some((eventObj) => {
-      if (eventObj.id === newId) {
-        newId++;
-      }
-      return newId;
-    });
-
-    const newEvent = {
-      id: newId,
-      createdBy: author,
-      title: eventTitle,
-      description: eventDescription,
-      image: imageUrl,
-      categoryIds: eventCategoryIds,
-      location: eventLocation,
-      startTime: eventStart,
-      endTime: eventEnd,
-    };
-    setEventObject(newEvent);
-    console.log(eventObject);
-    return eventObject;
-  };
-
-  // CREATE EVENT
-  const sendRequest = async (eventObject) => {
+  const createEvent = async (eventObject) => {
+    console.log("Create event: ", eventObject);
     try {
       const response = await fetch("http://localhost:3000/events", {
         method: "POST",
@@ -101,7 +34,9 @@ export const AddEvent = () => {
           `Failed to create a new event. Status: ${response.status}`
         );
       }
+
       const id = (await response.json()).id;
+
       navigate(`/event/${id}`);
     } catch (error) {
       console.error(`
@@ -131,7 +66,19 @@ export const AddEvent = () => {
       </Heading>
 
       <Flex justifyContent="center" textAlign="start">
-        <form>
+        <EventForm
+          events={events}
+          users={users}
+          categories={categories}
+          createEvent={createEvent}
+        />
+      </Flex>
+    </Box>
+  );
+};
+
+/*
+<form>
           <Grid
             gridTemplateColumns={{ base: "1fr", md: "40vw 40%" }}
             templateAreas={{
@@ -350,7 +297,4 @@ export const AddEvent = () => {
             </GridItem>
           </Grid>
         </form>
-      </Flex>
-    </Box>
-  );
-};
+*/
