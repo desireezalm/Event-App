@@ -2,12 +2,6 @@ import { Icon, Select, Flex } from "@chakra-ui/react";
 import { FaFilter } from "react-icons/fa6";
 
 export const FilterEvents = ({ handleFilter, ...props }) => {
-  /*
-  const handleFilter = (event) => {
-    setSelectedCategory(event.target.value);
-  };
-  */
-
   return (
     <Flex
       className="search-events"
