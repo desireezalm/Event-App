@@ -79,12 +79,18 @@ export const EventsPage = () => {
   };
 
   return (
-    <Box width="100vw" margin="0 auto">
+    <Box
+      width="100%"
+      margin="0 auto"
+      paddingBottom={{ base: "1rem", md: "2rem" }}
+    >
       <Heading
         textTransform="uppercase"
         margin="1.5rem 0"
         fontFamily="fantasy"
         letterSpacing="widest"
+        fontSize={{ md: "4rem" }}
+        textAlign={{ base: "center", md: "center" }}
       >
         Cat Crew Events
       </Heading>
@@ -93,19 +99,22 @@ export const EventsPage = () => {
         className="options-bar"
         flexDirection={{ base: "column", md: "row" }}
         padding="0 1rem 1rem 1rem"
-        gap={{ base: 2, md: 4 }}
+        gap={{ base: "1rem", sm: "2rem", md: "2rem" }}
+        justifyContent={{ md: "center" }}
+        alignContent={{ md: "center" }}
       >
         <SearchBar onChange={handleSearch} />
         <FilterEvents onChange={handleFilter} />
       </Flex>
 
       <SimpleGrid
-        width="100vw"
+        width="80vw"
         className="event-list"
-        columns={{ base: 1, md: 2, lg: 3, xl: 4 }}
-        spacing={10}
-        padding={{ base: "sm", sm: "sm", md: "md" }}
-        margin={{ base: "sm", sm: "sm", md: "md" }}
+        columns={{ base: 1, sm: 1, md: 2, lg: 3 }}
+        spacing={{ base: "1rem", sm: "1.5rem", md: "2rem" }}
+        padding={{ base: "0", md: "0" }}
+        margin="0 auto"
+        marginTop={{ md: "3rem" }}
       >
         {eventMatches.length < 1 ? (
           <Message text={"No events were found"} />

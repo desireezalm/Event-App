@@ -14,7 +14,6 @@ import {
   Center,
   Grid,
   GridItem,
-  Spacer,
 } from "@chakra-ui/react";
 
 import { useData } from "../../context/DataContext";
@@ -31,10 +30,11 @@ export const EventCard = ({ item, categories }) => {
       key={item.id}
       className="event"
       bgColor="green.200"
-      w={{ base: "90vw", md: "22rem" }}
-      h={{ base: "fit-content", md: "45rem" }}
+      w={{ base: "100%", md: "22rem" }}
+      h={{ base: "fit-content", md: "43rem" }}
       minHeight="fit-content"
       margin="0 auto"
+      padding="0"
       categories={categories}
     >
       {" "}
@@ -54,9 +54,10 @@ export const EventCard = ({ item, categories }) => {
             {item.title}
           </Heading>
         </CardHeader>
-        <CardBody minHeight="10rem">
+        <CardBody minHeight="4rem">
           <Text fontSize="sm" textAlign="start">
-            {item.description}
+            {item.description.slice(0, 200)}
+            {item.description.length > 200 ? "(...)" : ""}
           </Text>
           <Box marginTop="1.5rem" textAlign="start">
             <Text fontSize="xs">
@@ -69,14 +70,12 @@ export const EventCard = ({ item, categories }) => {
             </Text>
           </Box>
         </CardBody>
-        <Spacer />
         <CardFooter>
           <Flex
             gap={2}
             wrap="wrap"
             alignSelf="center"
             justifyContent="start"
-            marginTop="2rem"
             fontSize="xs"
             fontWeight="bold"
           >
@@ -107,9 +106,9 @@ export const EventCardDetails = ({ item, categories, users }) => {
       key={item.id}
       className="event"
       bgColor="green.200"
-      w={{ base: "90%", md: "80vw" }}
-      h={{ base: "fit-content", md: "80vh" }}
-      margin={{ base: 0, md: "2rem" }}
+      w={{ base: "90%", md: "80%" }}
+      h={{ base: "fit-content", md: "80%" }}
+      margin={{ base: "2rem 0", md: "2rem" }}
       padding={{ base: 0, md: "2rem" }}
       categories={categories}
     >

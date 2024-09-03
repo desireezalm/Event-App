@@ -47,8 +47,8 @@ export const AddEvent = () => {
   return (
     <Box
       className="add-event"
-      width={{ base: "100vw", md: "85%" }}
-      height={{ base: "full", md: "full" }}
+      width={{ base: "80vw", md: "85%" }}
+      height={{ base: "full", md: "85%" }}
       margin="0 auto"
       padding={{ base: "1rem", md: "1.5rem" }}
     >

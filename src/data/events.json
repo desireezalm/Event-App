@@ -27,11 +27,8 @@
       "createdBy": 1,
       "title": "Annoy the grumpy neighbour",
       "description": "Looking for a new challenge? Activate stealth mode and embark on a mission to outwit the grumpy old neighbor and his grouchy dog. A well-timed tail flick or mysterious stare through the fence will have them both in a tizzy!",
-      "image": "https://i.ibb.co/L1HszTP/event-1.jpg",
-      "categoryIds": [
-        1,
-        4
-      ],
+      "image": "https://i.ibb.co/DbBJJww/event-1.jpg",
+      "categoryIds": [1, 4],
       "location": "My next-door neighbour's garden",
       "startTime": "2024-09-01T14:00",
       "endTime": "2024-09-01T14:15:00.000Z"
@@ -42,9 +39,7 @@
       "title": "Cat Yoga",
       "description": "Time to stretch your paws! Achieve ultimate zen and flexibility with cat yoga! Perfect your pretzel poses and master the art of judging your human’s awkward attempts at 'downward dog.' Bonus points for maintaining a serene expression while they struggle!",
       "image": "https://i.ibb.co/9Wh4Qgd/event-2.jpg",
-      "categoryIds": [
-        1
-      ],
+      "categoryIds": [1],
       "location": "My garden",
       "startTime": "2024-09-02T08:00",
       "endTime": "2024-09-02T08:20"
@@ -55,9 +50,7 @@
       "title": "Treat tasting",
       "description": "Calling all feline food critics! Savor the experience of being a treat-tasting expert. Sniff, sample, and make sure your human knows that you only settle for the best. A few extra 'taste tests' are totally reasonable, right?",
       "image": "https://i.ibb.co/zfG75yy/event-3.jpg",
-      "categoryIds": [
-        2
-      ],
+      "categoryIds": [2],
       "location": "The kitchen",
       "startTime": "2024-09-06T12:00:00.000Z",
       "endTime": "2024-09-06T12:30:00.000Z"
@@ -68,9 +61,7 @@
       "title": "Sunbathing",
       "description": "Who needs a beach when you have the perfect sunspot? Bask in the warmth of the indoors, stretch luxuriously, and let the humans envy your expert-level relaxation. Pro tip: choose a spot where they trip over you—it's hilarious!",
       "image": "https://i.ibb.co/4d7L9zz/event-4.jpg",
-      "categoryIds": [
-        3
-      ],
+      "categoryIds": [3],
       "location": "The bench on the square",
       "startTime": "2024-09-10T15:00:00.000Z",
       "endTime": "2024-09-10T16:00:00.000Z"
@@ -81,9 +72,7 @@
       "title": "Wrestling",
       "description": "Wrestle-maniaaaaaaaaauw! Ready to dominate your territory? Unleash your inner wrestling champ and show those curtains who's boss. Whether it's a sneaky pounce or a full-on tackle, you'll have the whole house in awe of your moves!",
       "image": "https://i.ibb.co/dgRCMkw/event-5.jpg",
-      "categoryIds": [
-        1
-      ],
+      "categoryIds": [1],
       "location": "The alley",
       "startTime": "2024-09-11T20:00:00.000Z",
       "endTime": "2024-09-11T21:00:00.000Z"
@@ -94,9 +83,7 @@
       "title": "Cat Concert",
       "description": "Ready to be the star of your own cat concert? Whether it's a soulful midnight meow or a triumphant kitchen counter solo, let your voice be heard! Encore performances on your human's face at 3 AM are highly encouraged. Let's sing the song of our people!",
       "image": "https://i.ibb.co/LtQb3mN/event-6.jpg",
-      "categoryIds": [
-        4
-      ],
+      "categoryIds": [4],
       "location": "The balcony",
       "startTime": "2024-09-14T23:30:00.000Z",
       "endTime": "2024-09-14T23:59:00.000Z"
@@ -107,9 +94,7 @@
       "title": "Zoomie Staircase Extravaganza!",
       "description": "Attention, all feline fur-missiles! This Saturday at 3 PM, join us for the ultimate test of speed, agility, and chaotic energy—on the stairs! Whether you're a seasoned zoomie master or just discovered the thrill of full-speed sprints, this is the purr-fect opportunity to show off your stair-skipping skills. Bring your best zoomie face, sharpen those claws, and prepare to launch yourself into a frenzy of feline fun. Bonus points for dramatic pauses and tail poofs mid-zoom. See you on the stairs, fur-iends!",
       "image": "https://i.ibb.co/1sHf7Hg/event-7.jpg",
-      "categoryIds": [
-        1
-      ],
+      "categoryIds": [1],
       "location": "Staircase",
       "startTime": "2024-09-28T16:02",
       "endTime": "2024-09-28T17:02"
@@ -120,10 +105,7 @@
       "title": "Catfish Catch-a-Thon!",
       "description": "Hey, whisker warriors! Ready to tap into your inner hunter? This Sunday at 2 PM, join us by the fishbowl (or bathtub, no judgment) for the ultimate feline fishing event! Whether you're a pro at paw-dipping or just enjoy the thrill of the splash, it's time to show off your fishing finesse. Expect plenty of slippery fish action, dramatic paw swipes, and, of course, the satisfaction of a well-earned catch. No opposable thumbs required—just pure cat instinct. Bring your best hunting stare and get ready to reel in the fun!",
       "image": "https://i.ibb.co/fxFVz44/event-8.jpg",
-      "categoryIds": [
-        2,
-        1
-      ],
+      "categoryIds": [2, 1],
       "location": "The fish pond",
       "startTime": "2024-10-12T12:00",
       "endTime": "2024-10-12T15:00"

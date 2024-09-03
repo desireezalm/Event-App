@@ -64,7 +64,8 @@ export const EventForm = ({ users, categories, events, createEvent }) => {
   return (
     <form>
       <Grid
-        gridTemplateColumns={{ base: "1fr", md: "40vw 40%" }}
+        gridTemplateColumns={{ base: "1fr", sm: "35vw 35vw" }}
+        gridTemplateRows={{ base: "auto-fill" }}
         templateAreas={{
           base: `
                 "title"
@@ -85,7 +86,7 @@ export const EventForm = ({ users, categories, events, createEvent }) => {
                 "button button"
               `,
         }}
-        gap="0.2rem"
+        gap="1rem"
       >
         <GridItem area="title">
           <FormControl
