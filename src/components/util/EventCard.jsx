@@ -14,15 +14,30 @@ import {
   Center,
   Grid,
   GridItem,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  useDisclosure,
+  Button,
+  useToast,
 } from "@chakra-ui/react";
+
+import { EditIcon, DeleteIcon } from "@chakra-ui/icons";
+
+import { useNavigate } from "react-router-dom";
 
 import { useData } from "../../context/DataContext";
 
-import { EditIcon, DeleteIcon } from "@chakra-ui/icons";
+import { useRef } from "react";
+
 import { TextLabel } from "./TextLabel";
+import { EditForm } from "../EventForm";
 
 // EVENTS PAGE OVERVIEW
-
 export const EventCard = ({ item, categories }) => {
   const { matchId } = useData();
   return (
@@ -101,6 +116,122 @@ export const EventCard = ({ item, categories }) => {
 // DETAILED EVENT PAGE
 export const EventCardDetails = ({ item, categories, users }) => {
   const { matchId } = useData();
+  const {
+    isOpen: isEditOpen,
+    onOpen: onEditOpen,
+    onClose: onEditClose,
+  } = useDisclosure();
+  const {
+    isOpen: isDeleteOpen,
+    onOpen: onDeleteOpen,
+    onClose: onDeleteClose,
+  } = useDisclosure();
+  const toast = useToast();
+  const timerRef = useRef(null);
+  const navigate = useNavigate();
+
+  const editEvent = async (eventObject) => {
+    try {
+      const response = await fetch(`http://localhost:3000/events/${item.id}`, {
+        method: "PUT",
+        body: JSON.stringify(eventObject),
+        headers: { "Content-Type": "application/json;charset=utf-8" },
+      });
+
+      if (response.ok) {
+        const id = (await response.json()).id;
+        toast({
+          title: "Event updated.",
+          description:
+            "The event has been successfully updated. You will be returned to the event page.",
+          status: "success",
+          duration: 9000,
+          isClosable: true,
+        });
+
+        clearTimeout(timerRef.current);
+        timerRef.current = setTimeout(() => onEditClose(), 5000);
+        navigate(`/event/${id}`);
+      }
+
+      if (!response.ok) {
+        toast({
+          title: "Update unsuccessful.",
+          description:
+            "The event could not be updated. Please try again or contact our support.",
+          status: "error",
+          duration: 9000,
+          isClosable: true,
+        });
+        throw new Error(
+          `Failed to edit the current event. Status: ${response.status}`
+        );
+      }
+    } catch (error) {
+      toast({
+        title: "Update unsuccessful.",
+        description:
+          "The event could not be updated. Please try again or contact our support.",
+        status: "error",
+        duration: 9000,
+        isClosable: true,
+      });
+      console.error(`
+        An error occurred while updating the current event: , ${error}. 
+        Please try again or contact our support.`);
+    }
+  };
+
+  const deleteEvent = async () => {
+    try {
+      const response = await fetch(`http://localhost:3000/events/${item.id}`, {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json;charset=utf-8" },
+      });
+
+      if (response.ok) {
+        toast({
+          title: "Event deleted.",
+          description:
+            "The event has been successfully deleted. You will be re-directed to the events overviews page.",
+          status: "success",
+          duration: 9000,
+          isClosable: true,
+        });
+
+        clearTimeout(timerRef.current);
+        timerRef.current = setTimeout(() => onDeleteClose(), 5000);
+        navigate(`/`);
+      }
+
+      if (!response.ok) {
+        toast({
+          title: "Deletion unsuccessful.",
+          description:
+            "The event could not be deleted. Please try again or contact our support.",
+          status: "error",
+          duration: 9000,
+          isClosable: true,
+        });
+        throw new Error(
+          `Failed to delete the current event. Status: ${response.status}`
+        );
+      }
+    } catch (error) {
+      toast({
+        title: "Deletion unsuccessful.",
+        description:
+          "The event could not be deleted. Please try again or contact our support.",
+        status: "error",
+        duration: 9000,
+        isClosable: true,
+      });
+      console.error(`
+        An error occurred while deleting the current event: , ${error}. 
+        Please try again or contact our support.`);
+    }
+  };
+
   return (
     <Card
       key={item.id}
@@ -257,22 +388,99 @@ export const EventCardDetails = ({ item, categories, users }) => {
                 aria-label="Edit Event"
                 colorScheme="green"
                 color="white"
+                id="edit-btn"
                 _hover={{ color: "yellow.400", bgColor: "green.700" }}
                 size="lg"
                 variant="solid"
                 fontSize="lg"
                 icon={<EditIcon />}
+                onClick={onEditOpen}
               />
               <IconButton
                 aria-label="Delete Event"
                 colorScheme="green"
                 color="white"
+                id="delete-btn"
                 _hover={{ color: "red.400", bgColor: "green.700" }}
                 size="lg"
                 variant="solid"
                 fontSize="lg"
                 icon={<DeleteIcon />}
+                onClick={onDeleteOpen}
               />
+
+              <Modal
+                closeOnOverlayClick={false}
+                isOpen={isEditOpen}
+                onClose={onEditClose}
+                size={{ md: "6xl" }}
+              >
+                <ModalOverlay />
+                <ModalContent bgColor="blackAlpha.800">
+                  <ModalHeader color="green.400" textAlign="center">
+                    Edit Event
+                  </ModalHeader>
+                  <ModalCloseButton />
+                  <ModalBody>
+                    <EditForm
+                      currentEvent={item}
+                      users={users}
+                      categories={categories}
+                      editEvent={editEvent}
+                    />
+                  </ModalBody>
+
+                  <ModalFooter margin={{ md: "2rem" }}>
+                    <Button
+                      colorScheme="red"
+                      onClick={onEditClose}
+                      width={{ md: "6rem" }}
+                      padding={{ base: "1rem" }}
+                    >
+                      Cancel
+                    </Button>
+                  </ModalFooter>
+                </ModalContent>
+              </Modal>
+              <Modal
+                closeOnOverlayClick={false}
+                isOpen={isDeleteOpen}
+                onClose={onDeleteClose}
+                size={{ md: "md" }}
+              >
+                <ModalOverlay />
+                <ModalContent bgColor="blackAlpha.800" colorScheme="green">
+                  <ModalHeader color="green.400" textAlign="center">
+                    Are you sure you want to delete this event?
+                  </ModalHeader>
+                  <ModalCloseButton />
+                  <ModalBody color="green.300">
+                    This action is irreversable. Please confirm that you want to
+                    delete this event.
+                  </ModalBody>
+
+                  <ModalFooter margin={{ md: "2rem" }}>
+                    <Button
+                      colorScheme="green"
+                      onClick={deleteEvent}
+                      width={{ md: "8rem" }}
+                      padding={{ base: "1rem" }}
+                      margin={{ base: "1rem" }}
+                    >
+                      Delete Event
+                    </Button>
+                    <Button
+                      colorScheme="red"
+                      onClick={onDeleteClose}
+                      width={{ md: "6rem" }}
+                      padding={{ base: "1rem" }}
+                      margin={{ base: "1rem" }}
+                    >
+                      Cancel
+                    </Button>
+                  </ModalFooter>
+                </ModalContent>
+              </Modal>
             </CardFooter>
           </GridItem>
         </Grid>
