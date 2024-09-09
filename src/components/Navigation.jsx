@@ -91,7 +91,7 @@ export const Navigation = () => {
             </MenuItem>
           </Link>
           <MenuDivider />
-          <Link to="/">
+          <Link to="/group">
             <MenuItem
               width={{ base: "100vw", md: "100%" }}
               padding="0.5rem"
