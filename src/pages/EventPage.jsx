@@ -23,9 +23,13 @@ export const EventPage = () => {
     <>
       <Heading
         textTransform="uppercase"
-        margin="1.5rem 0"
+        margin={{ base: "1.5rem 0", md: "2rem 0" }}
         fontFamily="fantasy"
         letterSpacing="widest"
+        fontSize={{ md: "3rem" }}
+        textAlign="center"
+        width={{ md: "85%" }}
+        display={{ md: "inline-block" }}
       >
         Cat Crew
       </Heading>

@@ -9,13 +9,15 @@ export const Root = () => {
     <Box
       id="root"
       bgColor="blackAlpha.800"
-      width="100vw"
+      width="full"
       height="full"
       color="green.200"
       textAlign={{ base: "center", md: "start" }}
       fontFamily="heading"
       fontSize="xl"
       fontWeight="600"
+      margin="0"
+      padding="0"
     >
       <DataContextProvider>
         <Navigation />

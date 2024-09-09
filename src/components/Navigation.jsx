@@ -19,7 +19,7 @@ import {
 
 export const Navigation = () => {
   return (
-    <Menu width={{ base: "100vw", md: "30vw" }} height="fit-content">
+    <Menu width={{ base: "70vw", md: "30vw" }} height="fit-content">
       <MenuButton
         as={IconButton}
         aria-label="Navigation"
