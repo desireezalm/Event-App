@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Center, Heading } from "@chakra-ui/react";
 import { useLoaderData } from "react-router-dom";
 import { EventCardDetails } from "../components/util/EventCard";
+import { LoadingState } from "../components/util/LoadingState";
 
 export const loader = async ({ params }) => {
   const users = await fetch("http://localhost:3000/users");
@@ -19,6 +20,19 @@ export const loader = async ({ params }) => {
 
 export const EventPage = () => {
   const { eventItem, users, categories } = useLoaderData();
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    let ignore = false;
+    setIsLoading(true);
+    if (Object.entries(eventItem).length !== 0 && !ignore) {
+      setIsLoading(false);
+    }
+    return () => {
+      ignore = true;
+    };
+  });
+
   return (
     <>
       <Heading
@@ -31,15 +45,19 @@ export const EventPage = () => {
         width={{ md: "85%" }}
         display={{ md: "inline-block" }}
       >
-        Cat Crew
+        Cat Crew Event
       </Heading>
       <Center className="event-page">
-        <EventCardDetails
-          categories={categories}
-          users={users}
-          key={eventItem.id}
-          item={eventItem}
-        />
+        {isLoading ? (
+          <LoadingState />
+        ) : (
+          <EventCardDetails
+            categories={categories}
+            users={users}
+            key={eventItem.id}
+            item={eventItem}
+          />
+        )}
       </Center>
     </>
   );
