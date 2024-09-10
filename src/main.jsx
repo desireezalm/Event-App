@@ -7,6 +7,7 @@ import { AddEvent, loader as newEventLoader } from "./pages/AddEvent";
 import { GroupPage, loader as groupLoader } from "./pages/GroupPage";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Root } from "./components/Root";
+import { ErrorState } from "./components/util/ErrorState";
 
 const router = createBrowserRouter([
   {
@@ -17,21 +18,25 @@ const router = createBrowserRouter([
         path: "/",
         element: <EventsPage />,
         loader: eventsLoader,
+        errorElement: <ErrorState />,
       },
       {
         path: "/event/:eventId",
         element: <EventPage />,
         loader: eventLoader,
+        errorElement: <ErrorState />,
       },
       {
         path: "/new",
         element: <AddEvent />,
         loader: newEventLoader,
+        errorElement: <ErrorState />,
       },
       {
         path: "/group",
         element: <GroupPage />,
         loader: groupLoader,
+        errorElement: <ErrorState />,
       },
     ],
   },
