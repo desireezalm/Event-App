@@ -1,13 +1,10 @@
-import { useState, createContext, useContext } from "react";
+import { createContext, useContext } from "react";
 
 export const DataContext = createContext({});
 
-DataContext.displayName = "FunctionContext";
+DataContext.displayName = "DataContext";
 
 export const DataContextProvider = ({ children }) => {
-  const [categoryList, setCategoryList] = useState([]);
-  const [userList, setUserList] = useState([]);
-
   const matchId = (id, list, type) => {
     const result = list.find((item) => {
       if (item.id === id) {
@@ -26,7 +23,11 @@ export const DataContextProvider = ({ children }) => {
   };
 
   return (
-    <DataContext.Provider value={{ matchId, categoryList, userList }}>
+    <DataContext.Provider
+      value={{
+        matchId,
+      }}
+    >
       {children}
     </DataContext.Provider>
   );
@@ -39,48 +40,3 @@ export const useData = () => {
   }
   return context;
 };
-
-/*
-export const DataContextProvider = ({ children }) => {
-  const [categories, setCategories] = useState([]);
-  const [users, setUsers] = useState([]);
-
-  useEffect(() => {
-    const fetchCategories = async () => {
-      const categoryUrl = "http://localhost:3000/categories";
-      const response = await fetch(categoryUrl);
-      const categoriesArray = await response.json();
-
-      setCategories(categoriesArray);
-      console.log("Categories: ", categoriesArray);
-    };
-
-    const fetchUsers = async () => {
-      const usersUrl = "http://localhost:3000/users";
-      const response = await fetch(usersUrl);
-      const usersArray = await response.json();
-
-      setUsers(usersArray);
-      //console.log("Users: ", usersArray);
-    };
-    fetchCategories();
-    fetchUsers();
-  }, []);
-
-  return (
-    <DataContext.Provider value={{ categories, users }}>
-      {children}
-    </DataContext.Provider>
-  );
-};
-*/
-
-/*
-export const useData = () => {
-  const context = useContext(DataContext);
-  if (!context) {
-    throw new Error("useData must be used within a DataContextProvider");
-  }
-  return context;
-};
-*/

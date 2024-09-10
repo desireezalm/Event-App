@@ -2,6 +2,8 @@ import { Box, Heading, Flex } from "@chakra-ui/react";
 
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { EventForm } from "../components/EventForm";
+import { useState, useEffect } from "react";
+import { LoadingState } from "../components/util/LoadingState";
 
 export const loader = async () => {
   const users = await fetch("http://localhost:3000/users");
@@ -18,6 +20,18 @@ export const loader = async () => {
 export const AddEvent = () => {
   const { categories, users, events } = useLoaderData();
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    let ignore = false;
+    setIsLoading(true);
+    if (events.length !== 0 && !ignore) {
+      setIsLoading(false);
+    }
+    return () => {
+      ignore = true;
+    };
+  });
 
   const createEvent = async (eventObject) => {
     console.log("Create event: ", eventObject);
@@ -65,12 +79,16 @@ export const AddEvent = () => {
       </Heading>
 
       <Flex justifyContent="center" textAlign="start">
-        <EventForm
-          events={events}
-          users={users}
-          categories={categories}
-          createEvent={createEvent}
-        />
+        {isLoading ? (
+          <LoadingState />
+        ) : (
+          <EventForm
+            events={events}
+            users={users}
+            categories={categories}
+            createEvent={createEvent}
+          />
+        )}
       </Flex>
     </Box>
   );
