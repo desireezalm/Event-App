@@ -3,22 +3,34 @@
     {
       "id": 1,
       "name": "Elvis",
-      "image": "https://i.ibb.co/njJJL0r/user-1.jpg"
+      "image": "https://i.ibb.co/njJJL0r/user-1.jpg",
+      "age": 5,
+      "hobbies": ["tail chasing", "hanging around in alleys", "eat food"]
     },
     {
       "id": 2,
       "name": "Khaleesi",
-      "image": "https://i.ibb.co/TK4Gy2m/user-2.jpg"
+      "image": "https://i.ibb.co/TK4Gy2m/user-2.jpg",
+      "age": 3,
+      "hobbies": ["human training", "yoga", "getting attention from everyone"]
     },
     {
       "id": 3,
       "name": "Nimbus",
-      "image": "https://i.ibb.co/WPy1MW2/user-3.jpg"
+      "image": "https://i.ibb.co/WPy1MW2/user-3.jpg",
+      "age": 5,
+      "hobbies": [
+        "laser dot hunting",
+        "nighttime zoomie racing",
+        "kibble sculpting"
+      ]
     },
     {
       "id": 4,
       "name": "Muffin",
-      "image": "https://i.ibb.co/VQn9XKk/user-4.jpg"
+      "image": "https://i.ibb.co/VQn9XKk/user-4.jpg",
+      "age": 8,
+      "hobbies": ["box inspections", "sunbathing", "hoarding hairties"]
     }
   ],
   "events": [
@@ -31,7 +43,7 @@
       "categoryIds": [1, 4],
       "location": "My next-door neighbour's garden",
       "startTime": "2024-09-01T14:00",
-      "endTime": "2024-09-01T14:15:00.000Z"
+      "endTime": "2024-09-01T14:15:00"
     },
     {
       "id": 2,
@@ -52,8 +64,8 @@
       "image": "https://i.ibb.co/zfG75yy/event-3.jpg",
       "categoryIds": [2],
       "location": "The kitchen",
-      "startTime": "2024-09-06T12:00:00.000Z",
-      "endTime": "2024-09-06T12:30:00.000Z"
+      "startTime": "2024-09-06T12:00:00",
+      "endTime": "2024-09-06T12:30:00"
     },
     {
       "id": 4,
@@ -63,8 +75,8 @@
       "image": "https://i.ibb.co/4d7L9zz/event-4.jpg",
       "categoryIds": [3],
       "location": "The bench on the square",
-      "startTime": "2024-09-10T15:00:00.000Z",
-      "endTime": "2024-09-10T16:00:00.000Z"
+      "startTime": "2024-09-10T15:00:00",
+      "endTime": "2024-09-10T16:00:00"
     },
     {
       "id": 5,
@@ -74,8 +86,8 @@
       "image": "https://i.ibb.co/dgRCMkw/event-5.jpg",
       "categoryIds": [1],
       "location": "The alley",
-      "startTime": "2024-09-11T20:00:00.000Z",
-      "endTime": "2024-09-11T21:00:00.000Z"
+      "startTime": "2024-09-11T20:00:00",
+      "endTime": "2024-09-11T21:00:00"
     },
     {
       "id": 6,
@@ -85,19 +97,8 @@
       "image": "https://i.ibb.co/LtQb3mN/event-6.jpg",
       "categoryIds": [4],
       "location": "The balcony",
-      "startTime": "2024-09-14T23:30:00.000Z",
-      "endTime": "2024-09-14T23:59:00.000Z"
-    },
-    {
-      "id": 7,
-      "createdBy": 3,
-      "title": "Zoomie Staircase Extravaganza!",
-      "description": "Attention, all feline fur-missiles! This Saturday at 3 PM, join us for the ultimate test of speed, agility, and chaotic energy—on the stairs! Whether you're a seasoned zoomie master or just discovered the thrill of full-speed sprints, this is the purr-fect opportunity to show off your stair-skipping skills. Bring your best zoomie face, sharpen those claws, and prepare to launch yourself into a frenzy of feline fun. Bonus points for dramatic pauses and tail poofs mid-zoom. See you on the stairs, fur-iends!",
-      "image": "https://i.ibb.co/1sHf7Hg/event-7.jpg",
-      "categoryIds": [1],
-      "location": "Staircase",
-      "startTime": "2024-09-28T16:02",
-      "endTime": "2024-09-28T17:02"
+      "startTime": "2024-09-14T23:30:00",
+      "endTime": "2024-09-14T23:59:00"
     },
     {
       "id": 8,
@@ -107,8 +108,19 @@
       "image": "https://i.ibb.co/fxFVz44/event-8.jpg",
       "categoryIds": [2, 1],
       "location": "The fish pond",
-      "startTime": "2024-10-12T12:00",
+      "startTime": "2024-10-12T13:00",
       "endTime": "2024-10-12T15:00"
+    },
+    {
+      "id": 9,
+      "createdBy": 3,
+      "title": "Zoomie Staircase Extravaganza!",
+      "description": "Attention, all feline fur-missiles! This Saturday at 3 PM, join us for the ultimate test of speed, agility, and chaotic energy—on the stairs! Whether you're a seasoned zoomie master or just discovered the thrill of full-speed sprints, this is the purr-fect opportunity to show off your stair-skipping skills. Bring your best zoomie face, sharpen those claws, and prepare to launch yourself into a frenzy of feline fun. Bonus points for dramatic pauses and tail poofs mid-zoom. See you on the stairs, fur-iends!",
+      "image": "https://i.ibb.co/1sHf7Hg/event-7.jpg",
+      "categoryIds": [1],
+      "location": "The staircase",
+      "startTime": "2024-09-22T19:00",
+      "endTime": "2024-09-22T19:30"
     }
   ],
   "categories": [
